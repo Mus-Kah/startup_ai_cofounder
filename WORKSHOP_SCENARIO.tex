@@ -1,0 +1,90 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=2.2cm]{geometry}
+\usepackage{enumitem}
+\usepackage{hyperref}
+
+\title{AI Start-up Lab: One Workshop Scenario from Axis 0 to Axis 11}
+\author{Your AI Co-Founder Workshop}
+\date{November 2026}
+
+\begin{document}
+\maketitle
+
+\section{Scenario and goal}
+We use the running case \textbf{StageFinder}, an app that matches students with internships. The team has 12 interview notes, one feedback survey, and no code. In two hours, the team must produce a concrete launch pack: a tested idea, a ranked channel, unit economics, an eight-week plan, brand prompts, a working Python draft, and a FastAPI endpoint.
+
+Open the GUI with \texttt{python app.py}, choose a provider in the sidebar, and set the \texttt{Shared case brief} once: case name, problem, target user, constraints, and evidence. The application prepends this brief to every AI prompt and attaches it to every saved result, so Axis 0--11 stay connected. Press \textbf{Apply to task fields} to copy it into task inputs. Choose English, Arabic, or French in the \texttt{Language} selector; the interface and AI output language switch together.
+
+Use \texttt{Workflow} for the intended chain: each axis output is adapted into the next axis input, and each handoff is visible before it runs. The individual task pages below receive the same generated preset; Axis 0 starts from the shared case brief and Axis 1--11 start from the latest previous-axis result. Each result stays in \textbf{History \& compare}, including the exact brief, upstream axis, and language used, so the team can compare two prompts or two financial assumptions without losing context.
+
+\section{Step-by-step scenario}
+
+\begin{enumerate}[label=\textbf{Axis \arabic*}, leftmargin=2.1cm]
+
+\item \textbf{Prompt engineering and readiness (Axis 0).}
+Open \textbf{0. Status} and confirm Python, packages, an API key, the shared case, and sample data. Then open \textbf{0. Prompt lab} and accept the generated shared-case preset. Apply RTCCF:
+\begin{quote}
+Role: a start-up mentor. Task: propose five cheap demand tests. Context: one university, under \$100, two weeks. Constraints: no paid ads. Format: table with test, cost, and signal of success.
+\end{quote}
+Run it with the selected provider. \emph{Result:} five testable experiments, for example a paper sign-up sheet, a WhatsApp list, and a campus email blast.
+
+\item \textbf{Brainstorming (Axis 1).}
+Open \textbf{1. Brainstorm} and accept the generated preset from Axis 0. Generate eight ideas from the prompt output and stored shared brief. Circle the three ideas with the cheapest first proof. \emph{Result:} the filtered internship board is selected because it can be tested with a spreadsheet before an app is built.
+
+\item \textbf{Research plan (Axis 2).}
+Open \textbf{2. Research plan} and accept the generated preset from Axis 1. The AI writes questions from the selected idea, but the team verifies facts with a live search tool. Add two sources with dates. \emph{Result:} three questions: do students use existing boards, where do deadlines come from, and will they pay for filtering?
+
+\item \textbf{Knowledge extraction (Axis 3).}
+Open \textbf{3. Extract} and accept the generated preset from Axis 2; it uses the research output as source text, with the sample interview still available for isolated practice. Return JSON with pain points, needs, exact quotes, and willingness to pay. Check three quotes against the source. \emph{Result:} the strongest pain is scattered deadlines; two students say they would pay \$5 for a filtered list.
+
+\item \textbf{Summarization (Axis 4).}
+Open \textbf{4. Summarize} and accept the generated preset from Axis 3; run it twice by changing only the audience: once for \emph{a busy investor} and once for \emph{a first-year student}. \emph{Result:} an 80-word investor brief and a 60-word student explanation, both grounded in the extracted quotes.
+
+\item \textbf{Comparison (Axis 5).}
+Open \textbf{5. Compare} and accept the generated preset from Axis 4: the summary becomes options and criteria. Fix the weights before scoring: cost 3, speed 2, reach 3. Let the AI score a mobile app, a WhatsApp bot, and a website, then let Python compute the weighted total. \emph{Result:} the WhatsApp bot wins because launch speed and reach matter more than polish.
+
+\item \textbf{Analysis (Axis 6).}
+Open \textbf{6. Analyze} and accept the generated preset from Axis 5: the comparison table becomes the analysis frame. Switch the source to \texttt{data/feedback.csv} for a hands-on check. pandas computes ratings by segment and the most common topics; the AI interprets the numbers. Recompute one average by hand. \emph{Result:} final-year students rate urgency highest, and deadline alerts are the most requested feature.
+
+\item \textbf{Financial model (Axis 7).}
+Open \textbf{7. Model} and accept the generated preset from Axis 6; edit price, CAC, churn, new users per month, months, fixed costs, and gross margin, then repeat with pessimistic assumptions. \emph{Result:} baseline reaches positive cash near month 9; pessimistic delays break-even, so the team keeps fixed costs below \$900 per month.
+
+\item \textbf{Planning (Axis 8).}
+Open \textbf{8. Plan} with the generated preset from Axis 7 and an eight-week horizon. Ask for three goals per week, an owner, and a done criterion. \emph{Result:} weeks 1--2 validate demand, weeks 3--4 build the WhatsApp bot, weeks 5--6 collect offers, week 7 tests alerts, and week 8 publishes the launch pack.
+
+\item \textbf{Multimedia (Axis 9).}
+Open \textbf{9. Media} and accept the generated preset from Axis 8. Refine the name, audience, and vibe only after reading the roadmap handoff. \emph{Result:} a logo prompt, a poster prompt, a color palette, and a 60-second pitch script that names the pain, the WhatsApp workflow, and the free pilot.
+
+\item \textbf{Implementation (Axis 10).}
+Open \textbf{10. Implement} with the generated preset from Axis 9. Review the spec before generating a single-file Python program; run it, read it, then press \textbf{Save draft} to write \texttt{outputs/generated\_app.py}. \emph{Result:} a working scorer that can rank three pilot offers.
+
+\item \textbf{FastAPI (Axis 11).}
+Start the service with \texttt{uvicorn src.api:app --reload}. In \textbf{11. API}, test \texttt{GET /health}, then \texttt{POST /model} with the sample JSON body. Open \url{http://127.0.0.1:8000/docs} to show the interactive documentation. \emph{Result:} the model can be called from any front-end or no-code tool without exposing the API key.
+\end{enumerate}
+
+\section{Concrete result: the StageFinder launch pack}
+The team leaves the workshop with one folder and one decision:
+\begin{table}[h]
+\centering
+\begin{tabular}{ll}
+\hline
+Artifact & Source \\
+\hline
+Five demand tests and the chosen test & Axes 0--1 \\
+Source-backed research questions & Axis 2 \\
+JSON pains, needs, quotes, and willingness to pay & Axes 3--4 \\
+Ranked launch channel: WhatsApp bot & Axis 5 \\
+Segment insight: deadline alerts matter most & Axis 6 \\
+Baseline and pessimistic 12-month cash model & Axis 7 \\
+Eight-week backward plan & Axis 8 \\
+Logo, poster, and 60-second pitch & Axis 9 \\
+Saved offer scorer & Axis 10 \\
+Live FastAPI model endpoint & Axis 11 \\
+\hline
+\end{tabular}
+\end{table}
+
+\section{Verification rules}
+AI drafts; the team verifies. Check every quote, every arithmetic result, and every generated line of code. Change one assumption at a time, rerun the task, and use \textbf{History \& compare} to justify the final choice. Keep personal data and API keys out of prompts.
+
+\end{document}
